@@ -29,7 +29,7 @@ namespace ScalingCleverDemo
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            //ScalingClever.ResolutionScaling.Initialize(this, new Point(800, 480), new Point(this.graphics.GraphicsDevice.Viewport.Width, this.graphics.GraphicsDevice.Viewport.Height));
+            ScalingClever.ResolutionScaling.Initialize(new Point(800, 480), new Point(this.graphics.GraphicsDevice.Viewport.Width, this.graphics.GraphicsDevice.Viewport.Height));
 
             base.Initialize();
         }

@@ -28,29 +28,9 @@ namespace ScalingClever
 
         private static Point _sourceResolution;
         private static Point _destinationResolution;
-        //public static void Initialize(Point sourceResolution, Point destinationResolution)
-        //{
-        //    _sourceResolution = sourceResolution;
-        //    _destinationResolution = destinationResolution;
-
-        //    float sourceResolutionX = (float)_sourceResolution.X;
-        //    float sourceResolutionY = (float)_sourceResolution.Y;
-
-        //    float destinationResolutionX = destinationResolution.X;
-        //    float destinationResolutionY = destinationResolution.Y;
-
-        //    float scaleX = destinationResolutionX / sourceResolutionX;
-        //    float scaleY = destinationResolutionY / sourceResolutionY;
-
-        //    scalingPositionX = sourceResolutionX / destinationResolutionX;
-        //    scalingPositionY = sourceResolutionY / destinationResolutionY;
-
-        //    _scalingMatrix = Matrix.CreateScale(scaleX, scaleY, 1f);
-        //}
-
-        public static void Draw(Point sourceResolution,Point destinationResolution)
+        
+        public static void Initialize(Point sourceResolution, Point destinationResolution)
         {
-
             _sourceResolution = sourceResolution;
             _destinationResolution = destinationResolution;
 
@@ -67,6 +47,11 @@ namespace ScalingClever
             scalingPositionY = sourceResolutionY / destinationResolutionY;
 
             _scalingMatrix = Matrix.CreateScale(scaleX, scaleY, 1f);
+        }
+
+        public static void Draw(Point sourceResolution,Point destinationResolution)
+        {
+            Initialize(sourceResolution, destinationResolution);
         }
 
         public static Vector2 Position(Vector2 vector2)
