@@ -1,7 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input.Touch;
 
-namespace ScalingCleverDemo.UWP
+namespace ScalingCleverDemo
 {
     /// <summary>
     /// This is the main type for your game.
@@ -10,11 +11,13 @@ namespace ScalingCleverDemo.UWP
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        Texture2D panda;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            IsMouseVisible = true;
+            TouchPanel.EnableMouseTouchPoint = true;
         }
 
         /// <summary>
@@ -26,6 +29,7 @@ namespace ScalingCleverDemo.UWP
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            //ScalingClever.ResolutionScaling.Initialize(this, new Point(800, 480), new Point(this.graphics.GraphicsDevice.Viewport.Width, this.graphics.GraphicsDevice.Viewport.Height));
 
             base.Initialize();
         }
@@ -38,7 +42,7 @@ namespace ScalingCleverDemo.UWP
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            panda = Texture2D.FromStream(this.graphics.GraphicsDevice,TitleContainer.OpenStream("Content/panda.jpg"));
             // TODO: use this.Content to load your game content here
         }
 
@@ -59,7 +63,18 @@ namespace ScalingCleverDemo.UWP
         protected override void Update(GameTime gameTime)
         {
             // TODO: Add your update logic here
-
+            var touches = TouchPanel.GetState();
+            foreach (var touch in touches)
+            {
+                if (touch.State != TouchLocationState.Pressed)
+                {
+                    var postion = ScalingClever.ResolutionScaling.Position(touch.Position);
+                    System.Diagnostics.Debug.WriteLine(postion.X + "," + postion.Y);
+                    var X = ScalingClever.ResolutionScaling.X(touch.Position.X);
+                    var Y = ScalingClever.ResolutionScaling.Y(touch.Position.Y);
+                    System.Diagnostics.Debug.WriteLine(X + "," + Y);
+                }
+            }
             base.Update(gameTime);
         }
 
@@ -71,7 +86,13 @@ namespace ScalingCleverDemo.UWP
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+           
+
             // TODO: Add your drawing code here
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, ScalingClever.ResolutionScaling.ScalingMatrix);
+            ScalingClever.ResolutionScaling.Draw(new Point(800, 480), new Point(this.Window.ClientBounds.Width, this.Window.ClientBounds.Height));
+            spriteBatch.Draw(panda, Vector2.Zero, Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
