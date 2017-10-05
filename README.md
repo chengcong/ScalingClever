@@ -9,17 +9,21 @@ MonoGame 适配多种设备分辨率运行库。
 2.放大游戏画面：Draw(GameTime gameTime)方法中修改 spriteBatch()为spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, ScalingClever.ResolutionScaling.ScalingMatrix);
 
 3.Update(GameTime gameTime)触控或点击坐标处理：
-###
+
 var touches = TouchPanel.GetState();
-            foreach (var touch in touches)
-            {
-                if (touch.State != TouchLocationState.Pressed)
-                {
-                    var postion = ScalingClever.ResolutionScaling.Position(touch.Position);
-                    System.Diagnostics.Debug.WriteLine(postion.X + "," + postion.Y);
-                    var X = ScalingClever.ResolutionScaling.X(touch.Position.X);
-                    var Y = ScalingClever.ResolutionScaling.Y(touch.Position.Y);
-                    System.Diagnostics.Debug.WriteLine(X + "," + Y);
-                }
-            }
-###
+
+foreach (var touch in touches)
+
+{
+
+       if (touch.State != TouchLocationState.Pressed)
+       {
+       
+           var postion = ScalingClever.ResolutionScaling.Position(touch.Position);
+           
+                  
+       }
+       
+}
+
+
