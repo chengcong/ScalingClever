@@ -21,6 +21,10 @@ foreach (var touch in touches)
        
            var postion = ScalingClever.ResolutionScaling.Position(touch.Position);
            
+           var X = ScalingClever.ResolutionScaling.X(touch.Position.X);
+           
+           var Y = ScalingClever.ResolutionScaling.Y(touch.Position.Y);
+           
                   
        }
        
