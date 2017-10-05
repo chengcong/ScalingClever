@@ -44,11 +44,16 @@ namespace ScalingCleverDemo
                 if (touch.State != TouchLocationState.Pressed)
                 {
                     // 缩放后，坐标点位置
+                    
                     var postion = ScalingClever.ResolutionScaling.Position(touch.Position);
                     System.Diagnostics.Debug.WriteLine(postion.X + "," + postion.Y);
-                    // 缩放后，坐标点X值
+                    
+                    // 缩放后，坐标点X值
+                    
                     var X = ScalingClever.ResolutionScaling.X(touch.Position.X);
-                    // 缩放后，坐标点Y值
+                    
+                    // 缩放后，坐标点Y值
+                    
                     var Y = ScalingClever.ResolutionScaling.Y(touch.Position.Y);
                     System.Diagnostics.Debug.WriteLine(X + "," + Y);
                 }
@@ -61,8 +66,11 @@ namespace ScalingCleverDemo
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            // 放大界面
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, ScalingClever.ResolutionScaling.ScalingMatrix);
-            // UWP平台放大缩小窗口比例，设置800x480，游戏制作使用的虚拟分辨率，目标分辨率为窗口分辨率
+            
+            // UWP平台放大缩小窗口比例，设置800x480，游戏制作使用的虚拟分辨率，目标分辨率为窗口分辨率
+            
             ScalingClever.ResolutionScaling.Draw(new Point(800, 480), new Point(this.Window.ClientBounds.Width, this.Window.ClientBounds.Height));
             spriteBatch.Draw(panda, Vector2.Zero, Color.White);
             spriteBatch.End();
