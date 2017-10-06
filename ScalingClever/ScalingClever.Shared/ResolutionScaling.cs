@@ -28,7 +28,7 @@ namespace ScalingClever
 
         private static Point _sourceResolution;
         private static Point _destinationResolution;
-        
+
         public static void Initialize(Point sourceResolution, Point destinationResolution)
         {
             _sourceResolution = sourceResolution;
