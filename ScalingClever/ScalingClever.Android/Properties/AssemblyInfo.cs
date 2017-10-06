@@ -7,7 +7,7 @@ using Android.App;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ScalingClever.Android")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("MonoGame 适配多种设备分辨率运行库。")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ScalingClever.Android")]
