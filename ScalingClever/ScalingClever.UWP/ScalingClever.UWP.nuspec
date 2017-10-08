@@ -1,36 +1,25 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
     <id>ScalingClever.UWP</id>
-    <version>1.0.1.0</version>
+    <version>1.0.1</version>
     <title>ScalingClever.UWP</title>
     <authors>chengcong</authors>
     <owners>chengcong</owners>
-    <licenseUrl>https://github.com/chengcong/ScalingClever/blob/master/LICENSE.txt</licenseUrl>
-    <projectUrl>https://github.com/chengcong/ScalingClever</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>MonoGame 适配多种设备分辨率运行库。</description>
-    <releaseNotes/>
-    <copyright>Copyright 2017</copyright>
-    <tags>MonoGame XNA</tags>
-    <references>
-      <reference file="MonoGame.Framework.dll" />
-      <reference file="SharpDX.Direct2D1.dll" />
-      <reference file="SharpDX.Direct3D11.dll" />
-      <reference file="SharpDX.dll" />
-      <reference file="SharpDX.DXGI" />
-      <reference file="SharpDX.MediaFoundation.dll" />
-      <reference file="SharpDX.XAudio2.dll" />
-    </references>
+    <copyright>Copyright ©  2017</copyright>
+    <dependencies>
+      <group targetFramework="UAP10.0">
+        <dependency id="Microsoft.NETCore.UniversalWindowsPlatform" version="5.1.0" exclude="Build,Analyzers" />
+        <dependency id="MonoGame.Framework.WindowsUniversal" version="3.5.1.1679" exclude="Build,Analyzers" />
+        <dependency id="SharpDX" version="3.0.0" exclude="Build,Analyzers" />
+        <dependency id="SharpDX.Direct2D1" version="3.0.0" exclude="Build,Analyzers" />
+        <dependency id="SharpDX.Direct3D11" version="3.0.0" exclude="Build,Analyzers" />
+        <dependency id="SharpDX.DXGI" version="3.0.0" exclude="Build,Analyzers" />
+        <dependency id="SharpDX.MediaFoundation" version="3.0.0" exclude="Build,Analyzers" />
+        <dependency id="SharpDX.XAudio2" version="3.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
   </metadata>
-  <files>
-    <file src="lib/MonoGame.Framework.dll" target="lib"/>
-    <file src="lib/SharpDX.Direct2D1.dll" target="lib"/>
-    <file src="lib/SharpDX.Direct3D11.dll" target="lib"/>
-    <file src="lib/SharpDX.dll" target="lib"/>
-    <file src="lib/SharpDX.DXGI.dll" target="lib"/>
-    <file src="lib/SharpDX.MediaFoundation.dll" target="lib"/>
-    <file src="lib/SharpDX.XAudio2.dll" target="lib"/>
-  </files>
 </package>
