@@ -77,8 +77,8 @@ namespace ScalingCleverDemo
                     System.Diagnostics.Debug.WriteLine(X + "," + Y);
                 }
             }
-
-            //手势点击
+            #endregion
+            #region 手势
             while (TouchPanel.IsGestureAvailable)
             {
                 var gesture = TouchPanel.ReadGesture();
@@ -91,6 +91,7 @@ namespace ScalingCleverDemo
                     System.Diagnostics.Debug.WriteLine(X + "," + Y);
                 }
             }
+            #endregion
             base.Update(gameTime);
         }
 
