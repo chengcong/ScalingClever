@@ -18,6 +18,7 @@ namespace ScalingCleverDemo
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             TouchPanel.EnableMouseTouchPoint = true;
+            TouchPanel.EnabledGestures = GestureType.Tap;
         }
 
         /// <summary>
@@ -63,6 +64,7 @@ namespace ScalingCleverDemo
         protected override void Update(GameTime gameTime)
         {
             // TODO: Add your update logic here
+            #region 鼠标点击，手指点击
             var touches = TouchPanel.GetState();
             foreach (var touch in touches)
             {
@@ -72,6 +74,20 @@ namespace ScalingCleverDemo
                     System.Diagnostics.Debug.WriteLine(postion.X + "," + postion.Y);
                     var X = ScalingClever.ResolutionScaling.X(touch.Position.X);
                     var Y = ScalingClever.ResolutionScaling.Y(touch.Position.Y);
+                    System.Diagnostics.Debug.WriteLine(X + "," + Y);
+                }
+            }
+
+            //手势点击
+            while (TouchPanel.IsGestureAvailable)
+            {
+                var gesture = TouchPanel.ReadGesture();
+                if(gesture.GestureType==GestureType.Tap)
+                {
+                    var postion = ScalingClever.ResolutionScaling.Position(gesture.Position);
+                    System.Diagnostics.Debug.WriteLine(postion.X + "," + postion.Y);
+                    var X = ScalingClever.ResolutionScaling.X(gesture.Position.X);
+                    var Y = ScalingClever.ResolutionScaling.Y(gesture.Position.Y);
                     System.Diagnostics.Debug.WriteLine(X + "," + Y);
                 }
             }
