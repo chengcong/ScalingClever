@@ -26,7 +26,7 @@ namespace ScalingCleverDemo.iOS
         public override void FinishedLaunching(UIApplication app)
         {
             RunGame();
-            ScalingClever.ResolutionScaling.FinishedLaunching(new CoreGraphics.CGSize(800, 480));
+            //ScalingClever.ResolutionScaling.FinishedLaunching(new CoreGraphics.CGSize(800, 480));
         }
     }
 }
