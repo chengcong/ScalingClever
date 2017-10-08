@@ -17,6 +17,7 @@ namespace ScalingCleverDemo
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft;
             TouchPanel.EnableMouseTouchPoint = true;
             TouchPanel.EnabledGestures = GestureType.Tap;
         }
