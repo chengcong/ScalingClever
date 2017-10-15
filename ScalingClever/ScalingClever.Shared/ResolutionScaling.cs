@@ -2,6 +2,7 @@
 using CoreGraphics;
 using UIKit;
 #endif
+
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -124,6 +125,23 @@ namespace ScalingClever
             UIApplication.SharedApplication.Windows[0].RootViewController.View.Transform = CGAffineTransform.MakeScale(scaleXValue, scaleYValue);
             //如果界面存在偏移，可用一下方法移动视图位置 
             UIApplication.SharedApplication.Windows[0].RootViewController.View.Frame = new CGRect(0, 0, (int)screenWidth, (int)screenHeight);
+        }
+#endif
+#if __ANDROID__
+        /// <summary>
+        ///  不设置PreferredBackBuffer宽度和高度使用此方法
+        /// </summary>
+        /// <param name="view">Android项目渲染游戏界面的view</param>
+        /// <param name="sourceResolution">源分辨率</param>
+        /// <param name="destinationResolution">目标分辨率，通常设置设备实际分辨率</param>
+        /// <returns></returns>
+        public static global::Android.Views.View OnCreate(global::Android.Views.View view,global::Android.Graphics.Point sourceResolution, global::Android.Graphics.Point destinationResolution)
+        {
+            view.ScaleX = ((float)destinationResolution.X)/((float)sourceResolution.X);
+            view.ScaleY = ((float)destinationResolution.Y) / ((float)sourceResolution.Y); ;
+            view.PivotX = 0;
+            view.PivotY = 0;
+            return (view);
         }
 #endif
     }

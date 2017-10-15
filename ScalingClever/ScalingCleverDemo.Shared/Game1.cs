@@ -16,6 +16,7 @@ namespace ScalingCleverDemo
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.IsFullScreen = true;
             IsMouseVisible = true;
             graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft;
             TouchPanel.EnableMouseTouchPoint = true;
@@ -71,10 +72,15 @@ namespace ScalingCleverDemo
             {
                 if (touch.State != TouchLocationState.Pressed)
                 {
-                    var postion = ScalingClever.ResolutionScaling.Position(touch.Position);
+                    //var postion = ScalingClever.ResolutionScaling.Position(touch.Position);
+                    //System.Diagnostics.Debug.WriteLine(postion.X + "," + postion.Y);
+                    //var X = ScalingClever.ResolutionScaling.X(touch.Position.X);
+                    //var Y = ScalingClever.ResolutionScaling.Y(touch.Position.Y);
+                    //System.Diagnostics.Debug.WriteLine(X + "," + Y);
+                    var postion = touch.Position;
                     System.Diagnostics.Debug.WriteLine(postion.X + "," + postion.Y);
-                    var X = ScalingClever.ResolutionScaling.X(touch.Position.X);
-                    var Y = ScalingClever.ResolutionScaling.Y(touch.Position.Y);
+                    var X = touch.Position.X;
+                    var Y = touch.Position.Y;
                     System.Diagnostics.Debug.WriteLine(X + "," + Y);
                 }
             }
@@ -85,10 +91,15 @@ namespace ScalingCleverDemo
                 var gesture = TouchPanel.ReadGesture();
                 if(gesture.GestureType==GestureType.Tap)
                 {
-                    var postion = ScalingClever.ResolutionScaling.Position(gesture.Position);
+                    //var postion = ScalingClever.ResolutionScaling.Position(gesture.Position);
+                    //System.Diagnostics.Debug.WriteLine(postion.X + "," + postion.Y);
+                    //var X = ScalingClever.ResolutionScaling.X(gesture.Position.X);
+                    //var Y = ScalingClever.ResolutionScaling.Y(gesture.Position.Y);
+                    //System.Diagnostics.Debug.WriteLine(X + "," + Y);
+                    var postion = gesture.Position;
                     System.Diagnostics.Debug.WriteLine(postion.X + "," + postion.Y);
-                    var X = ScalingClever.ResolutionScaling.X(gesture.Position.X);
-                    var Y = ScalingClever.ResolutionScaling.Y(gesture.Position.Y);
+                    var X = gesture.Position.X;
+                    var Y = gesture.Position.Y;
                     System.Diagnostics.Debug.WriteLine(X + "," + Y);
                 }
             }
@@ -108,6 +119,7 @@ namespace ScalingCleverDemo
 
             // TODO: Add your drawing code here
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, ScalingClever.ResolutionScaling.ScalingMatrix);
+            //spriteBatch.Begin();
             ScalingClever.ResolutionScaling.Draw(new Point(800, 480), new Point(this.Window.ClientBounds.Width, this.Window.ClientBounds.Height));
             spriteBatch.Draw(panda, Vector2.Zero, Color.White);
             spriteBatch.End();

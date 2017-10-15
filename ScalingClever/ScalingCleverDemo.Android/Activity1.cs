@@ -1,5 +1,6 @@
 using Android.App;
 using Android.Content.PM;
+using Android.Graphics;
 using Android.OS;
 using Android.Views;
 
@@ -19,7 +20,15 @@ namespace ScalingCleverDemo.Android
         {
             base.OnCreate(bundle);
             var g = new Game1();
-            SetContentView((View)g.Services.GetService(typeof(View)));
+            var view = (View)g.Services.GetService(typeof(View));
+            //获取设备实际分辨率大小，
+            Point point = new Point();
+            WindowManager.DefaultDisplay.GetSize(point);
+            int width = point.X;
+            int height = point.Y;
+            //全屏放大游戏
+            var _view=ScalingClever.ResolutionScaling.OnCreate(view, new Point(800, 480), new Point(width, height));
+            SetContentView(_view);
             g.Run();
         }
     }
