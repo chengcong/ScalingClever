@@ -26,7 +26,7 @@ namespace ScalingCleverDemo.Android
             WindowManager.DefaultDisplay.GetSize(point);
             int width = point.X;
             int height = point.Y;
-            //全屏放大游戏
+            //全屏放大游戏触控坐标
             var _view=ScalingClever.ResolutionScaling.OnCreate(view, new Point(800, 480), new Point(width, height));
             SetContentView(_view);
             g.Run();
