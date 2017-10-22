@@ -62,12 +62,33 @@ namespace ScalingClever
             _scalingMatrix = Matrix.CreateScale(scaleX, scaleY, 1f);
         }
         /// <summary>
+        /// 设置PreferredBackBuffer宽度和高度且窗口大小不会改变（iOS，Android），触控坐标与绘图坐标不一致时使用，全屏放大
+        /// </summary>
+        /// <param name="game">游戏类</param>
+        /// <param name="sourceResolution">源分辨率</param>
+        public static void Initialize(Game game,Point sourceResolution)
+        {
+            Point destinationResolution = new Point(game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
+            Initialize(sourceResolution,destinationResolution);
+        }
+
+        /// <summary>
         /// 设置PreferredBackBuffer宽度和高度且窗口大小会改变（UWP），触控坐标与绘图坐标不一致时使用
         /// </summary>
         /// <param name="sourceResolution">源分辨率</param>
         /// <param name="destinationResolution">目标分辨率，通常设置设备实际分辨率</param>
         public static void Draw(Point sourceResolution,Point destinationResolution)
         {
+            Initialize(sourceResolution, destinationResolution);
+        }
+        /// <summary>
+        /// 设置PreferredBackBuffer宽度和高度且窗口大小会改变（UWP），触控坐标与绘图坐标不一致时使用，全屏放大
+        /// </summary>
+        /// <param name="game">游戏类</param>
+        /// <param name="sourceResolution">源分辨率</param>
+        public static void Draw(Game game, Point sourceResolution)
+        {
+            Point destinationResolution = new Point(game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
             Initialize(sourceResolution, destinationResolution);
         }
 
@@ -129,7 +150,7 @@ namespace ScalingClever
 #endif
 #if __ANDROID__
         /// <summary>
-        ///  不设置PreferredBackBuffer宽度和高度使用此方法
+        ///  不设置PreferredBackBuffer宽度和高度使用此方法,放大触控点坐标
         /// </summary>
         /// <param name="view">Android项目渲染游戏界面的view</param>
         /// <param name="sourceResolution">源分辨率</param>
@@ -142,6 +163,24 @@ namespace ScalingClever
             view.PivotX = 0;
             view.PivotY = 0;
             return (view);
+        }
+        /// <summary>
+        ///  不设置PreferredBackBuffer宽度和高度使用此方法,全屏放大触控点坐标
+        /// </summary>
+        /// <param name="view">Android项目渲染游戏界面的view</param>
+        /// <param name="sourceResolution">源分辨率</param>
+        /// <returns></returns>
+        public static global::Android.Views.View OnCreate(global::Android.Views.View view, global::Android.Graphics.Point sourceResolution)
+        {
+            global::Android.Graphics.Point destinationResolution = new global::Android.Graphics.Point();
+
+            (view.Context as global::Android.App.Activity).WindowManager.DefaultDisplay.GetSize(destinationResolution);
+            int width = destinationResolution.X;
+            int height = destinationResolution.Y;
+
+            var _view = ScalingClever.ResolutionScaling.OnCreate(view, sourceResolution, new global::Android.Graphics.Point(width, height));
+
+            return (_view);
         }
 #endif
     }
