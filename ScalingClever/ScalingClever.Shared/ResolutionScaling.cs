@@ -7,12 +7,14 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ScalingClever
 {
     public class ResolutionScaling
     {
+        private static RenderTarget2D renderTarget2D;
+
         private static Matrix _scalingMatrix;
         public static Matrix ScalingMatrix
         {
@@ -38,10 +40,10 @@ namespace ScalingClever
         private static float scaleX;
         private static float scaleY;
         /// <summary>
-        /// 设置PreferredBackBuffer宽度和高度且窗口大小不会改变（iOS，Android），触控坐标与绘图坐标不一致时使用
+        /// renderTarget2D放大视图（步骤1）：初始化放大视图 | Matrix放大视图（步骤1）：修改spriteBatch.Begin()中的Matrix来放大视图 
         /// </summary>
         /// <param name="sourceResolution">源分辨率</param>
-        /// <param name="destinationResolution">目标分辨率，通常设置设备实际分辨率</param>
+        /// <param name="destinationResolution">目标分辨率</param>
         public static void Initialize(Point sourceResolution, Point destinationResolution)
         {
             _sourceResolution = sourceResolution;
@@ -62,7 +64,7 @@ namespace ScalingClever
             _scalingMatrix = Matrix.CreateScale(scaleX, scaleY, 1f);
         }
         /// <summary>
-        /// 设置PreferredBackBuffer宽度和高度且窗口大小不会改变（iOS，Android），触控坐标与绘图坐标不一致时使用，全屏放大
+        /// renderTarget2D放大视图（步骤1）：初始化放大视图 | Matrix放大视图（步骤1）：修改spriteBatch.Begin()中的Matrix来放大视图 
         /// </summary>
         /// <param name="game">游戏类</param>
         /// <param name="sourceResolution">源分辨率</param>
@@ -73,7 +75,55 @@ namespace ScalingClever
         }
 
         /// <summary>
-        /// 设置PreferredBackBuffer宽度和高度且窗口大小会改变（UWP），触控坐标与绘图坐标不一致时使用
+        ///  renderTarget2D放大视图（步骤2）：实例化renderTarget2D
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="sourceResolution"></param>
+        public static void LoadContent(Game game, Point sourceResolution)
+        {
+            renderTarget2D = new RenderTarget2D(game.GraphicsDevice, sourceResolution.X, sourceResolution.Y);
+        }
+        /// <summary>
+        /// renderTarget2D放大视图（步骤3）：设置设备渲染目标为RenderTarget2D
+        /// </summary>
+        /// <param name="game">Game类实例</param>
+        public static void BeginDraw(Game game)
+        {
+            game.GraphicsDevice.SetRenderTarget(ResolutionScaling.renderTarget2D);
+        }
+        /// <summary>
+        /// renderTarget2D放大视图（步骤4）：将renderTarget2D渲染到全屏幕
+        /// </summary>
+        /// <param name="game">Game类实例</param>
+        /// <param name="spriteBatch">画刷实例</param>
+        public static void EndDraw(Game game,SpriteBatch spriteBatch)
+        {
+            game.GraphicsDevice.SetRenderTarget(null);
+            game.GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
+            spriteBatch.Draw(ResolutionScaling.renderTarget2D, new Rectangle(0, 0, game.GraphicsDevice.Viewport.Bounds.Width, game.GraphicsDevice.Viewport.Height), Color.White);
+            spriteBatch.End();
+        }
+        /// <summary>
+        /// renderTarget2D放大视图（步骤4）:将renderTarget2D渲染到（指定放大尺寸）
+        /// </summary>
+        /// <param name="game">Game类实例</param>
+        /// <param name="spriteBatch">画刷实例</param>
+        /// <param name="destinationResolution">放大视图尺寸</param>
+        public static void EndDraw(Game game, SpriteBatch spriteBatch, Point destinationResolution)
+        {
+            game.GraphicsDevice.SetRenderTarget(null);
+            game.GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
+            spriteBatch.Draw(ResolutionScaling.renderTarget2D, new Rectangle(0, 0, destinationResolution.X, destinationResolution.Y), Color.White);
+            spriteBatch.End();
+        }
+
+
+
+        /// <summary>
+        /// Matrix放大视图（步骤2）:设置PreferredBackBuffer宽度和高度且窗口大小会改变（UWP），触控坐标与绘图坐标不一致时使用
+        /// 
         /// </summary>
         /// <param name="sourceResolution">源分辨率</param>
         /// <param name="destinationResolution">目标分辨率，通常设置设备实际分辨率</param>
@@ -81,8 +131,9 @@ namespace ScalingClever
         {
             Initialize(sourceResolution, destinationResolution);
         }
+
         /// <summary>
-        /// 设置PreferredBackBuffer宽度和高度且窗口大小会改变（UWP），触控坐标与绘图坐标不一致时使用，全屏放大
+        /// Matrix放大视图（步骤2）:设置PreferredBackBuffer宽度和高度且窗口大小会改变（UWP），触控坐标与绘图坐标不一致时使用，全屏放大
         /// </summary>
         /// <param name="game">游戏类</param>
         /// <param name="sourceResolution">源分辨率</param>
@@ -92,14 +143,32 @@ namespace ScalingClever
             Initialize(sourceResolution, destinationResolution);
         }
 
+
+
+        /// <summary>
+        /// 放大触控（点击）坐标点
+        /// 使用顺序：renderTarget2D放大视图（步骤5）
+        /// </summary>
+        /// <param name="vector2">坐标点</param>
+        /// <returns></returns>
         public static Vector2 Position(Vector2 vector2)
         {
             return new Vector2(vector2.X * scalingPositionX, vector2.Y * scalingPositionY);
         }
+        /// <summary>
+        /// 放大触控（点击）坐标点X
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public static float X(float x)
         {
             return x * scalingPositionX;
         }
+        /// <summary>
+        /// 放大触控（点击）坐标点Y
+        /// </summary>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public static float Y(float y)
         {
             return y * scalingPositionY;

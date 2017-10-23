@@ -16,7 +16,7 @@ namespace ScalingCleverDemo
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             IsMouseVisible = true;
             graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft;
             TouchPanel.EnableMouseTouchPoint = true;
@@ -32,7 +32,8 @@ namespace ScalingCleverDemo
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            ScalingClever.ResolutionScaling.Initialize(new Point(800, 480), new Point(this.graphics.GraphicsDevice.Viewport.Width, this.graphics.GraphicsDevice.Viewport.Height));
+            //ScalingClever.ResolutionScaling.Initialize(new Point(800, 480), new Point(this.graphics.GraphicsDevice.Viewport.Width, this.graphics.GraphicsDevice.Viewport.Height));
+            ScalingClever.ResolutionScaling.Initialize(this, new Point(800, 480));
 
             base.Initialize();
         }
@@ -43,12 +44,22 @@ namespace ScalingCleverDemo
         /// </summary>
         protected override void LoadContent()
         {
+            ScalingClever.ResolutionScaling.LoadContent(this, new Point(800, 480));
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             panda = Texture2D.FromStream(this.graphics.GraphicsDevice,TitleContainer.OpenStream("Content/panda.jpg"));
             // TODO: use this.Content to load your game content here
         }
-
+        protected override bool BeginDraw()
+        {
+            ScalingClever.ResolutionScaling.BeginDraw(this);
+            return base.BeginDraw();
+        }
+        protected override void EndDraw()
+        {
+            ScalingClever.ResolutionScaling.EndDraw(this, spriteBatch);
+            base.EndDraw();
+        }
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.
@@ -72,16 +83,16 @@ namespace ScalingCleverDemo
             {
                 if (touch.State != TouchLocationState.Pressed)
                 {
-                    //var postion = ScalingClever.ResolutionScaling.Position(touch.Position);
-                    //System.Diagnostics.Debug.WriteLine(postion.X + "," + postion.Y);
-                    //var X = ScalingClever.ResolutionScaling.X(touch.Position.X);
-                    //var Y = ScalingClever.ResolutionScaling.Y(touch.Position.Y);
-                    //System.Diagnostics.Debug.WriteLine(X + "," + Y);
-                    var postion = touch.Position;
+                    var postion = ScalingClever.ResolutionScaling.Position(touch.Position);
                     System.Diagnostics.Debug.WriteLine(postion.X + "," + postion.Y);
-                    var X = touch.Position.X;
-                    var Y = touch.Position.Y;
+                    var X = ScalingClever.ResolutionScaling.X(touch.Position.X);
+                    var Y = ScalingClever.ResolutionScaling.Y(touch.Position.Y);
                     System.Diagnostics.Debug.WriteLine(X + "," + Y);
+                    //var postion = touch.Position;
+                    //System.Diagnostics.Debug.WriteLine(postion.X + "," + postion.Y);
+                    //var X = touch.Position.X;
+                    //var Y = touch.Position.Y;
+                    //System.Diagnostics.Debug.WriteLine(X + "," + Y);
                 }
             }
             #endregion
@@ -118,9 +129,11 @@ namespace ScalingCleverDemo
            
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, ScalingClever.ResolutionScaling.ScalingMatrix);
-            //spriteBatch.Begin();
+            //spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, ScalingClever.ResolutionScaling.ScalingMatrix);
+            spriteBatch.Begin();
+
             ScalingClever.ResolutionScaling.Draw(new Point(800, 480), new Point(this.Window.ClientBounds.Width, this.Window.ClientBounds.Height));
+
             spriteBatch.Draw(panda, Vector2.Zero, Color.White);
             spriteBatch.End();
 
