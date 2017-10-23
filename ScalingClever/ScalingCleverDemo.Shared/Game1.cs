@@ -132,7 +132,7 @@ namespace ScalingCleverDemo
             //spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, ScalingClever.ResolutionScaling.ScalingMatrix);
             spriteBatch.Begin();
 
-            ScalingClever.ResolutionScaling.Draw(new Point(800, 480), new Point(this.Window.ClientBounds.Width, this.Window.ClientBounds.Height));
+            //ScalingClever.ResolutionScaling.Draw(new Point(800, 480), new Point(this.Window.ClientBounds.Width, this.Window.ClientBounds.Height));
 
             spriteBatch.Draw(panda, Vector2.Zero, Color.White);
             spriteBatch.End();

@@ -40,7 +40,7 @@ namespace ScalingClever
         private static float scaleX;
         private static float scaleY;
         /// <summary>
-        /// renderTarget2D放大视图（步骤1）：初始化放大视图 | Matrix放大视图（步骤1）：修改spriteBatch.Begin()中的Matrix来放大视图 
+        /// renderTarget2D放大视图（步骤1）：初始化放大视图（如果是UWP将该方法放在BeginDraw方法中） | Matrix放大视图（步骤1）：修改spriteBatch.Begin()中的Matrix来放大视图 
         /// </summary>
         /// <param name="sourceResolution">源分辨率</param>
         /// <param name="destinationResolution">目标分辨率</param>
@@ -64,7 +64,7 @@ namespace ScalingClever
             _scalingMatrix = Matrix.CreateScale(scaleX, scaleY, 1f);
         }
         /// <summary>
-        /// renderTarget2D放大视图（步骤1）：初始化放大视图 | Matrix放大视图（步骤1）：修改spriteBatch.Begin()中的Matrix来放大视图 
+        /// renderTarget2D放大视图（步骤1）：初始化放大视图（如果是UWP将该方法放在BeginDraw方法中） | Matrix放大视图（步骤1）：修改spriteBatch.Begin()中的Matrix来放大视图 
         /// </summary>
         /// <param name="game">游戏类</param>
         /// <param name="sourceResolution">源分辨率</param>
