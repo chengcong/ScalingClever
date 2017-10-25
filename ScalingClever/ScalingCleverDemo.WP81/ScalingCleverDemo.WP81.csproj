@@ -81,13 +81,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <ProjectReference Include="..\ScalingClever.WP81\ScalingClever.WP81.csproj">
-      <Project>{71780fc7-9469-438a-a363-e975e1629707}</Project>
-      <Name>ScalingClever.WP81</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -131,6 +124,9 @@
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\WindowsPhone81\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="ScalingClever.WP81">
+      <HintPath>..\ScalingClever.WP81\bin\Debug\ScalingClever.WP81.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="..\ScalingCleverDemo.Shared\ScalingCleverDemo.Shared.projitems" Label="Shared" />
