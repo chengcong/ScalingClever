@@ -11,3 +11,4 @@ https://www.nuget.org/packages/ScalingClever.Android<br>
 https://www.nuget.org/packages/ScalingClever.iOS<br>
 https://www.nuget.org/packages/ScalingClever.WP81<br>
 https://www.nuget.org/packages/ScalingClever.Windows<br>
+https://www.nuget.org/packages/ScalingClever.Mac<br>
