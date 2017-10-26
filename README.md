@@ -12,3 +12,5 @@ https://www.nuget.org/packages/ScalingClever.iOS<br>
 https://www.nuget.org/packages/ScalingClever.WP81<br>
 https://www.nuget.org/packages/ScalingClever.Windows<br>
 https://www.nuget.org/packages/ScalingClever.Mac<br>
+![image](https://github.com/chengcong/ScalingClever/blob/master/screenshots/macos.png)
+
