@@ -9,3 +9,4 @@ NuGet:<br>
 https://www.nuget.org/packages/ScalingClever.UWP<br>
 https://www.nuget.org/packages/ScalingClever.Android<br>
 https://www.nuget.org/packages/ScalingClever.iOS<br>
+https://www.nuget.org/packages/ScalingClever.WP81<br>
