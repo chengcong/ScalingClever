@@ -18,9 +18,13 @@ namespace ScalingCleverDemo
             Content.RootDirectory = "Content";
             graphics.IsFullScreen = false;
 
-#if WINDOWS_UAP
+#if WINDOWS_UAP || WINDOWS
+
             IsMouseVisible = true;
+            //this.Window.IsBorderless = false;
+
 #endif
+
             graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft;
             TouchPanel.EnableMouseTouchPoint = true;
             TouchPanel.EnabledGestures = GestureType.Tap;
@@ -34,6 +38,7 @@ namespace ScalingCleverDemo
         /// </summary>
         protected override void Initialize()
         {
+  
             // TODO: Add your initialization logic here
             //ScalingClever.ResolutionScaling.Initialize(new Point(800, 480), new Point(this.graphics.GraphicsDevice.Viewport.Width, this.graphics.GraphicsDevice.Viewport.Height));
             ScalingClever.ResolutionScaling.Initialize(this, new Point(800, 480));
