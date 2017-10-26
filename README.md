@@ -1,4 +1,4 @@
-# ScalingClever
+﻿# ScalingClever
 MonoGame 适配多种设备分辨率运行库。<br>
 功能：1.根据设备分辨率等比例放大游戏界面，全屏适配。2.触控点根据设备分辨率等比例放大，全屏适配<br>
 安装要求：monogame 3.5.1<br>
@@ -9,3 +9,4 @@ NuGet:<br>
 https://www.nuget.org/packages/ScalingClever.UWP<br>
 https://www.nuget.org/packages/ScalingClever.Android<br>
 https://www.nuget.org/packages/ScalingClever.iOS<br>
+https://www.nuget.org/packages/ScalingClever.WP81<br>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>1.0.3</version>
+    <title>$title$</title>
+    <authors>chengcong</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/chengcong/ScalingClever/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/chengcong/ScalingClever</projectUrl>
+    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>MonoGame 适配多种设备分辨率运行库。</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>MonoGame XNA</tags>
+  </metadata>
+</package>
