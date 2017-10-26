@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 
 namespace ScalingCleverDemo
@@ -65,6 +66,8 @@ namespace ScalingCleverDemo
         }
         protected override void EndDraw()
         {
+            //macOS初始化放这里
+            //ScalingClever.ResolutionScaling.Initialize(this, new Point(800, 480));
             ScalingClever.ResolutionScaling.EndDraw(this, spriteBatch);
             base.EndDraw();
         }
@@ -85,6 +88,23 @@ namespace ScalingCleverDemo
         protected override void Update(GameTime gameTime)
         {
             // TODO: Add your update logic here
+            #region macOS 鼠标点击
+            var mouseState = Mouse.GetState();
+
+            if (mouseState.LeftButton == ButtonState.Pressed)
+            {
+                var postion = ScalingClever.ResolutionScaling.Position(mouseState.Position);
+                System.Diagnostics.Debug.WriteLine(postion.X + "," + postion.Y);
+                var X = ScalingClever.ResolutionScaling.X(mouseState.Position.X);
+                var Y = ScalingClever.ResolutionScaling.Y(mouseState.Position.Y);
+                System.Diagnostics.Debug.WriteLine(X + "," + Y);
+                //var postion = mouseState.Position;
+                //System.Diagnostics.Debug.WriteLine(postion.X + "," + postion.Y);
+                //var X = mouseState.Position.X;
+                //var Y = mouseState.Position.Y;
+                //System.Diagnostics.Debug.WriteLine(X + "," + Y);
+            }
+            #endregion
             #region 鼠标点击，手指点击
             var touches = TouchPanel.GetState();
             foreach (var touch in touches)
