@@ -7,9 +7,12 @@ MonoGame 适配多种设备分辨率运行库。<br>
 QQ交流群：https://jq.qq.com/?_wv=1027&k=4BwGEoV
 NuGet:<br>
 https://www.nuget.org/packages/ScalingClever.UWP<br>
+![image](https://github.com/chengcong/ScalingClever/blob/master/ScalingClever/screenshots/uwpmobile.png)
+![image](https://github.com/chengcong/ScalingClever/blob/master/ScalingClever/screenshots/uwppc.png)
 https://www.nuget.org/packages/ScalingClever.Android<br>
 https://www.nuget.org/packages/ScalingClever.iOS<br>
 https://www.nuget.org/packages/ScalingClever.WP81<br>
+![image](https://github.com/chengcong/ScalingClever/blob/master/ScalingClever/screenshots/wp81.png)
 https://www.nuget.org/packages/ScalingClever.Windows<br>
 https://www.nuget.org/packages/ScalingClever.Mac<br>
 <br>
