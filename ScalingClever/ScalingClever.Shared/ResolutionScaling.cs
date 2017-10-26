@@ -142,7 +142,10 @@ namespace ScalingClever
             Point destinationResolution = new Point(game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
             Initialize(sourceResolution, destinationResolution);
         }
-
+        public static Point Position(Point point)
+        {
+            return new Point((int)(point.X * scalingPositionX), (int)(point.Y * scalingPositionY));
+        }
 
 
         /// <summary>
