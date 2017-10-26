@@ -10,6 +10,7 @@ https://www.nuget.org/packages/ScalingClever.UWP<br>
 ![image](https://github.com/chengcong/ScalingClever/blob/master/ScalingClever/screenshots/uwpmobile.png)<br>
 ![image](https://github.com/chengcong/ScalingClever/blob/master/ScalingClever/screenshots/uwppc.png)<br>
 https://www.nuget.org/packages/ScalingClever.Android<br>
+![image](https://github.com/chengcong/ScalingClever/blob/master/ScalingClever/screenshots/android.png)<br>
 https://www.nuget.org/packages/ScalingClever.iOS<br>
 ![image](https://github.com/chengcong/ScalingClever/blob/master/ScalingClever/screenshots/iphone.png)<br>
 https://www.nuget.org/packages/ScalingClever.WP81<br>
