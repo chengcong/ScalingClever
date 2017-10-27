@@ -14,6 +14,7 @@ https://www.nuget.org/packages/ScalingClever.Android<br>
 https://www.nuget.org/packages/ScalingClever.iOS<br>
 ![image](https://github.com/chengcong/ScalingClever/blob/master/ScalingClever/screenshots/iphone.png)<br>
 https://www.nuget.org/packages/SuiteValue.UI.WP8<br>
+![image](https://github.com/chengcong/ScalingClever/blob/master/ScalingClever/screenshots/wp80.png)
 https://www.nuget.org/packages/ScalingClever.WP81<br>
 ![image](https://github.com/chengcong/ScalingClever/blob/master/ScalingClever/screenshots/wp81.png)
 https://www.nuget.org/packages/ScalingClever.Windows<br>
