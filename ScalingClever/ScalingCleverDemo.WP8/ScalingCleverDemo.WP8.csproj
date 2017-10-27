@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">ARM</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{88A6B232-DFED-4BFC-B9A1-78AEA39A739B}</ProjectGuid>
+    <ProjectGuid>{49D8530A-4B3A-4E28-A209-7EE3BA0086E7}</ProjectGuid>
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -27,8 +27,6 @@
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <MonoGamePlatform>WindowsPhone8</MonoGamePlatform>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -76,11 +74,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Game1.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Game1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -125,9 +123,6 @@
     <Content Include="Assets\Tiles\IconicTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\panda.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
@@ -146,14 +141,11 @@
     <Reference Include="MonoGame.Framework" Condition=" '$(Platform)' == 'x86' ">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\WindowsPhone\x86\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="ScalingClever.WP8, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ScalingClever.WP8.1.0.3\lib\wp8\x86\ScalingClever.WP8.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ScalingClever.WP8\ScalingClever.WP8.csproj">
-      <Project>{85d82e87-420d-4a67-9b8b-4297a4a105cf}</Project>
-      <Name>ScalingClever.WP8</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="..\ScalingCleverDemo.Shared\ScalingCleverDemo.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
@@ -175,11 +167,4 @@
   </Target>
   -->
   <ProjectExtensions />
-  <Import Project="..\packages\MonoGame.Framework.WindowsPhone8.3.5.1.1679\build\wp8\MonoGame.Framework.WindowsPhone8.targets" Condition="Exists('..\packages\MonoGame.Framework.WindowsPhone8.3.5.1.1679\build\wp8\MonoGame.Framework.WindowsPhone8.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\MonoGame.Framework.WindowsPhone8.3.5.1.1679\build\wp8\MonoGame.Framework.WindowsPhone8.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MonoGame.Framework.WindowsPhone8.3.5.1.1679\build\wp8\MonoGame.Framework.WindowsPhone8.targets'))" />
-  </Target>
 </Project>

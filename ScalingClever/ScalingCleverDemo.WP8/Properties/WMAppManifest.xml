@@ -2,7 +2,7 @@
 
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US"/>
-  <App xmlns="" ProductID="{3f2a2e8b-658c-4f5c-8c7c-a219293e0af0}" Title="ScalingCleverDemo.WP8" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="ScalingCleverDemo.WP8 author" Description="Sample description" Publisher="ScalingCleverDemo.WP8" PublisherID="{0df4bf76-7146-42eb-ba7c-83daa7249a23}">
+  <App xmlns="" ProductID="{e7e13ddc-1714-4bc8-bbf1-53baad3e349a}" Title="ScalingCleverDemo.WP8" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="ScalingCleverDemo.WP8 author" Description="Sample description" Publisher="ScalingCleverDemo.WP8" PublisherID="{0df4bf76-7146-42eb-ba7c-83daa7249a23}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING"/>

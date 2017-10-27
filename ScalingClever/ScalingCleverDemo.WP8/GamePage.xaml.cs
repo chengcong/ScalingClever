@@ -25,7 +25,6 @@ namespace ScalingCleverDemo.WP8
             _game = XamlGame<Game1>.Create("", this);
 
             ScalingClever.ResolutionScaling.SetupScreenAutoScaling(this, this.XnaSurface);
-
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
         }
