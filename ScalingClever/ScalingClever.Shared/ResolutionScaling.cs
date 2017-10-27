@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 
+
 namespace ScalingClever
 {
     public class ResolutionScaling
@@ -255,5 +256,102 @@ namespace ScalingClever
             return (_view);
         }
 #endif
+#if WINDOWS_PHONE
+        private static Microsoft.Phone.Controls.PhoneApplicationPage Instance = null;
+        /// <summary>
+        /// WP8适配WP8.1,UWP手机等比例放大
+        /// </summary>
+        /// <param name="gamePage">Page类</param>
+        /// <param name="xnaSurface">XnaSurface</param>
+        /// <param name="thickness">设置游戏屏幕与手机屏幕边缘的距离</param>
+        public static void SetupScreenAutoScaling(Microsoft.Phone.Controls.PhoneApplicationPage gamePage, System.Windows.Controls.DrawingSurface xnaSurface,ViewportMargin viewportMargin)
+        {
+            if (Instance != null)
+                throw new InvalidOperationException("There can be only one GamePage object!");
+
+            Instance = gamePage;
+           
+            int? scaleFactor = null;
+            var content = System.Windows.Application.Current.Host.Content; 
+             var scaleFactorProperty = content.GetType().GetProperty("ScaleFactor");
+
+            if (scaleFactorProperty != null)
+                scaleFactor = scaleFactorProperty.GetValue(content, null) as int?;
+
+            if (scaleFactor == null)
+                scaleFactor = 100; 
+
+            double scale = ((double)scaleFactor) / 100.0;
+
+     
+
+            if (scaleFactor == 150)
+            {
+                // Centered letterboxing - move Margin.Left to the right by ((1280-1200)/2)/scale
+                if (viewportMargin == ViewportMargin.Top)
+                {
+                    xnaSurface.Margin = new System.Windows.Thickness(0, 40 / scale, 0, 0);
+                }
+                else if (viewportMargin == ViewportMargin.Left)
+                {
+                    xnaSurface.Margin = new System.Windows.Thickness(40 / scale,0 , 0, 0);
+                }
+                else if (viewportMargin == ViewportMargin.Right)
+                {
+                    xnaSurface.Margin = new System.Windows.Thickness(0, 0, 40 / scale, 0);
+                }
+                else if (viewportMargin == ViewportMargin.Right)
+                {
+                    xnaSurface.Margin = new System.Windows.Thickness(0, 0,0, 40 / scale);
+                }
+            }
+
+            // Scale the XnaSurface: 
+
+            System.Windows.Media.ScaleTransform scaleTransform = new System.Windows.Media.ScaleTransform();
+            scaleTransform.ScaleX = scaleTransform.ScaleY = scale;
+            xnaSurface.RenderTransform = scaleTransform;
+        }
+        /// <summary>
+        /// WP8适配WP8.1,UWP手机等比例放大
+        /// </summary>
+        /// <param name="gamePage">Page类</param>
+        /// <param name="xnaSurface">XnaSurface</param>
+        public static void SetupScreenAutoScaling(Microsoft.Phone.Controls.PhoneApplicationPage gamePage, System.Windows.Controls.DrawingSurface xnaSurface)
+        {
+            if (Instance != null)
+                throw new InvalidOperationException("There can be only one GamePage object!");
+
+            Instance = gamePage;
+            // Get the screen’s WVGA ''ScaleFactor'' via reflection.  scaleFactor will be 100 (WVGA), 160 (WXGA), or 150 (WXGA).
+            int? scaleFactor = null;
+            var content = System.Windows.Application.Current.Host.Content;
+            var scaleFactorProperty = content.GetType().GetProperty("ScaleFactor");
+
+            if (scaleFactorProperty != null)
+                scaleFactor = scaleFactorProperty.GetValue(content, null) as int?;
+
+            if (scaleFactor == null)
+                scaleFactor = 100; 
+
+            double scale = ((double)scaleFactor) / 100.0; 
+
+        
+
+            System.Windows.Media.ScaleTransform scaleTransform = new System.Windows.Media.ScaleTransform();
+            scaleTransform.ScaleX = scaleTransform.ScaleY = scale;
+            xnaSurface.RenderTransform = scaleTransform;
+        }
+
+#endif
     }
-}
+#if WINDOWS_PHONE
+    public  enum ViewportMargin
+    {
+        Left=0,
+        Top,
+        Right,
+        Bottom
+    }
+#endif
+    }
